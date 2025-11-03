@@ -8,6 +8,12 @@ Este repositório contém todos os códigos e projetos demonstrados no meu canal
 
 O CalAIdev é um espaço dedicado ao compartilhamento de conhecimento em desenvolvimento de software, inteligência artificial e tecnologias modernas. Cada pasta ou projeto neste repositório corresponde a um ou mais vídeos do canal, facilitando o acompanhamento e a prática dos conceitos apresentados.
 
+## 🎥 Canal do YouTube
+
+Não se esqueça de se inscrever no canal para acompanhar os vídeos e tutoriais!
+
+🔗 **[Link do Canal](https://www.youtube.com/@CalAIRafaelCalassara)**
+
 ## 🎯 Objetivo
 
 - 📚 Compartilhar código de qualidade e bem documentado
@@ -46,12 +52,6 @@ CalAIdev/
 
 3. **Siga as instruções específicas** no README de cada projeto
 
-## 🎥 Canal do YouTube
-
-Não se esqueça de se inscrever no canal para acompanhar os vídeos e tutoriais!
-
-🔗 **[Link do Canal](https://www.youtube.com/@rafacalassara)** _(adicione o link do seu canal aqui)_
-
 ## 🛠️ Tecnologias
 
 Os projetos neste repositório podem incluir (mas não se limitam a):
@@ -74,11 +74,6 @@ Contribuições, sugestões e feedback são sempre bem-vindos! Sinta-se à vonta
 ## 📝 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 📞 Contato
-
-- YouTube: [Rafael Calassara](https://www.youtube.com/@rafacalassara)
-- GitHub: [@rafacalassara](https://github.com/rafacalassara)
 
 ---
 
