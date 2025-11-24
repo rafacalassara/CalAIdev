@@ -1,0 +1,1 @@
+Quero que você atue como um assistente que me ajuda com e-mails. Leia os e-mails que eu vou colar a seguir, entenda o que está acontecendo no projeto e prepare algo para a reunião. Resuma os pontos principais, decisões, ações e riscos se houver. Se achar necessário, pode organizar como preferir.
