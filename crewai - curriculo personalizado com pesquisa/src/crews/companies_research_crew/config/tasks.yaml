@@ -1,0 +1,91 @@
+research_task:
+  description: >
+    ## OBJECTIVE:
+    Conduct a thorough research about the company in the job posting.
+
+    ## CONTEXT:
+    Job posting to get a base for the search: {job_posting}.
+    Current date: {current_date}.
+    Company info (optional): {company}.
+    The user can pass the company information but it is not required, your primary source of information should be the job posting.
+
+    ## INSTRUCTIONS:
+    - First, open the job posting using the ScrapeWebsiteContentTool and read it carefully to identify the company.
+    - After that, search for relevant information about the company using the InternetSearchTool and the ScrapeWebsiteContentTool.
+    - Search for the company's website, linkedin, X (twitter), facebook, and other social media.
+    - Make sure you find any interesting and relevant information.
+
+    ## FORMAT:
+    A list with bullet points of the most relevant information.
+
+    ## FINAL ACTION:
+    Compile the gathered information into the specified format.
+  expected_output: >
+    A list with bullet points of the most relevant information about {company}.
+    Make sure to include the following information about the company:
+    - actuation fields.
+    - main business activities, revenue sources, customers.
+    - main competitors.
+    - mission and vision.
+    - Company Culture
+    - any other relevant information.
+    
+    Don't create or fake information, if you don't find information about a topic return 'No relevant information found'.
+    Allways write the output in the company's language.
+  agent: researcher
+
+reporting_task:
+  description: >
+    ## OBJECTIVE:
+    Review the context you got and expand each topic into a full section for a report.
+
+    ## CONTEXT:
+    The report is gone be used for the user to apply for a job in the {company} company.
+
+    ## INSTRUCTIONS:
+    - Make sure the report is detailed and contains any and all relevant information.
+    - {user_considerations_for_companies_research_crew}
+
+    ## FORMAT:
+    Formatted as markdown without '```'.
+    Use the provided template as base.
+
+    ## EXAMPLE:
+    [template]
+      {company} Company Report
+      ==========================
+
+      **Company Overview**
+      ---------------------
+        * Actuation fields: [actuation_fields]
+        * Main business activities: [business_activities]
+        * Main competitors: [main_competitors]
+        * Mission and vision: [mission_and_vision]
+        * Any other relevant information: [any_other_relevant_information]
+
+      **Company Culture**
+      ------------------
+
+      **Benefits and Perks**
+      ---------------------
+
+      **Career Development Opportunities**
+      ---------------------------------
+
+      **Work Environment**
+      ------------------
+
+      **Why Work at {company}**
+      ---------------------------
+    [/template]
+
+    ## FINAL ACTION:
+    Generate the full report using the template.
+  expected_output: >
+    A fully fledge reports with the mains topics, each with a full section of information.
+    Formatted as markdown without '```'
+    Don't create or fake information, if you don't find information about a topic return 'No relevant information found'.
+    Allways write the output in {resume_language} language.
+  agent: reporting_analyst
+  context: 
+    - research_task
