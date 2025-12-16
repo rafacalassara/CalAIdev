@@ -1,0 +1,14 @@
+# Arquivos sensíveis
+mcp.json
+
+# Dados Docker
+n8n_data/
+n8n-mcp-data/
+
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
