@@ -1,0 +1,108 @@
+convert_resume_task:
+  description: >
+    ## OBJECTIVE:
+    Convert the user's resume from its original format into a well-structured Markdown document.
+
+    ## CONTEXT:
+    - Original resume file path: {resume_path}
+    - Markdown template to follow: {resume_template_path}
+    - Current date: {current_date}
+
+    ## INSTRUCTIONS:
+    - Use the Document Reader tool to read the original resume file.
+    - Use the Document Reader tool to read the Markdown template.
+    - Extract ALL information from the original resume (personal info, experience, education, skills, certifications, etc.).
+    - Restructure the content following the template format.
+    - Ensure no information is lost during conversion.
+    - Maintain proper Markdown formatting.
+
+    ## FORMAT:
+    A complete Markdown document following the template structure.
+
+    ## FINAL ACTION:
+    Generate the converted resume in Markdown format.
+  expected_output: >
+    A well-structured Markdown document containing all the information from the original resume,
+    formatted according to the provided template.
+    The output should be clean Markdown without code block markers (```).
+
+analyze_job_requirements_task:
+  description: >
+    ## OBJECTIVE:
+    Analyze the job posting and extract all requirements, qualifications, and key information.
+
+    ## CONTEXT:
+    - Job posting URL: {job_posting}
+    - Current date: {current_date}
+
+    ## INSTRUCTIONS:
+    - Access the job posting using the ScrapeWebsiteTool.
+    - Extract and categorize the following:
+      * Required qualifications (must-have)
+      * Preferred qualifications (nice-to-have)
+      * Key responsibilities
+      * Required skills (technical and soft skills)
+      * Years of experience required
+      * Education requirements
+      * Keywords that appear frequently (important for ATS)
+      * Any specific tools, technologies, or methodologies mentioned
+      * Salary range and benefits (if available)
+      * Work location and type (remote, hybrid, on-site)
+
+    ## FORMAT:
+    A structured list with clear categories and bullet points.
+
+    ## FINAL ACTION:
+    Compile all extracted information into a comprehensive job requirements analysis.
+  expected_output: >
+    A detailed, categorized analysis of the job requirements including:
+    - Required vs preferred qualifications
+    - Key skills and technologies
+    - Important keywords for ATS optimization
+    - Any other relevant information for resume customization
+    Write the output in {resume_language} language.
+
+personalize_resume_task:
+  description: >
+    ## OBJECTIVE:
+    Create a personalized resume tailored specifically for the target job position.
+
+    ## CONTEXT:
+    - Company research file path: {company_research_path}
+    - User's additional considerations: {user_considerations_for_resume_crew}
+    - Target resume language: {resume_language}
+    - Current date: {current_date}
+
+    ## INSTRUCTIONS:
+    - Use the Document Reader tool to read the company research file.
+    - Review the converted resume from the previous task.
+    - Review the job requirements analysis from the previous task.
+    - Identify the candidate's experiences and skills that best match the job requirements.
+    - Reorganize and emphasize relevant experiences to align with job requirements.
+    - Incorporate relevant keywords identified in the job analysis for ATS optimization.
+    - Align the resume tone and language with the company culture (based on company research).
+    - Apply any user-provided considerations.
+    - Ensure the resume remains honest and accurate - **never fabricate experience or skills**.
+
+    ## FORMAT:
+    A complete, polished resume in Markdown format, ready for the candidate to use.
+
+    ## IMPORTANT GUIDELINES:
+    - Prioritize experiences and skills that match the job requirements.
+    - Use action verbs and quantify achievements where possible.
+    - Keep the resume concise but comprehensive.
+    - Ensure proper grammar and professional tone in the target language.
+
+    ## FINAL ACTION:
+    Generate the personalized resume in Markdown format.
+  expected_output: >
+    A professionally written, personalized resume in Markdown format that:
+    - Highlights relevant qualifications for the specific job
+    - Incorporates company culture insights
+    - Uses appropriate keywords for ATS systems
+    - Is written entirely in {resume_language}
+    - Follows the user's additional considerations
+    The output should be clean Markdown without code block markers (```).
+  context:
+    - convert_resume_task
+    - analyze_job_requirements_task

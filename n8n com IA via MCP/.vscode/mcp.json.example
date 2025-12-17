@@ -1,0 +1,29 @@
+{
+  "inputs": [
+    { "type": "promptString", "id": "n8nApiKey", "description": "N8N API Key", "password": true },
+    { "type": "promptString", "id": "mcpAuthToken", "description": "MCP Auth Token", "password": true }
+  ],
+  "servers": {
+    "n8nMcp": {
+      "type": "stdio",
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm",
+
+        "-e", "MCP_MODE=stdio",
+        "-e", "LOG_LEVEL=error",
+
+        "-e", "N8N_MCP_TELEMETRY_DISABLED=true",
+        
+        "-e", "WEBHOOK_SECURITY_MODE=moderate",
+
+        "-e", "N8N_API_URL=http://host.docker.internal:5678",
+        "-e", "N8N_API_KEY=${input:n8nApiKey}",
+
+        "-e", "AUTH_TOKEN=${input:mcpAuthToken}",
+
+        "ghcr.io/czlonkowski/n8n-mcp:latest"
+      ]
+    }
+  }
+}
