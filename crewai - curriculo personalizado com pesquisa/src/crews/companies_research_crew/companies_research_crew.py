@@ -4,7 +4,7 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 
 from crewai_tools import ScrapeWebsiteTool
-from tools.ddgs_tool import DuckDuckGoSearchTool
+from tools import DuckDuckGoSearchTool
 
 @CrewBase
 class CompaniesResearchCrew():
@@ -51,6 +51,7 @@ class CompaniesResearchCrew():
     def reporting_task(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_task'],
+            output_file=self.inputs['company_research_path'],
         ) # type: ignore
 
     @crew

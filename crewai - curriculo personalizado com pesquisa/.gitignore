@@ -25,4 +25,5 @@ dist/
 .idea/
 
 # Project specific
-outputs/
+outputs/*
+*.pdf
