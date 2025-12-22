@@ -218,18 +218,10 @@ Para resetar as credenciais:
 1. `Ctrl+Shift+P` → "MCP: Reset Cached Inputs"
 2. Desative e reative o MCP na lista de ferramentas
 
-### ❌ Erro "denied" ao baixar imagem do GHCR
-
-Se você receber o erro `error from registry: denied`, tente:
-
-```powershell
-# Fazer pull da imagem manualmente
-docker pull ghcr.io/czlonkowski/n8n-mcp:latest
-```
 
 **Alternativas:**
 - Use o serviço hospedado gratuito em [dashboard.n8n-mcp.com](https://dashboard.n8n-mcp.com/)
-- Use `npx n8n-mcp` diretamente (sem Docker)
+- Use `npx n8n-mcp` diretamente
 
 ### ❌ Agente não encontra as ferramentas do N8N
 
@@ -304,7 +296,6 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 - [MCP Protocol](https://modelcontextprotocol.io/)
 - [N8N-MCP GitHub](https://github.com/czlonkowski/n8n-mcp)
 - [VS Code](https://code.visualstudio.com/)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [GitHub Copilot](https://github.com/features/copilot)
 
 ---
