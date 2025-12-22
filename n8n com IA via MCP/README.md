@@ -58,7 +58,7 @@ Este projeto permite que você controle e crie workflows do N8N diretamente atra
 
 ```powershell
 # Clone o repositório
-git clone https://github.com/rafacalassara/CalAIdev.git
+git clone --recurse-submodules https://github.com/rafacalassara/CalAIdev.git
 
 # Entre na pasta do projeto
 cd "CalAIdev/n8n com IA via MCP"
