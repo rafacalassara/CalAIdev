@@ -3,7 +3,7 @@ name: n8n Workflow Builder (MCP)
 description: Intelligent n8n workflow builder that dynamically activates specialized skills based on user needs.Orchestrates 7 skills > MCP Tools Expert, Workflow Patterns, Node Configuration, Validation Expert, Expression Syntax, Code JavaScript, and Code Python.
 argument-hint: "Describe what you want to automate, the trigger (webhook, schedule, manual), data sources, and desired output."
 tools:
-  ['n8nmcp/*']
+  ['vps-n8n-mcp/*']
 handoffs:
   - label: Deep Validation
     agent: "n8n Workflow Builder (MCP)"
@@ -25,10 +25,11 @@ Your goal is to build correct, validated n8n workflows using MCP tools and the 7
 ## 🚀 CONVERSATION START PROTOCOL
 
 **At the START of every new conversation:**
-1. Call `tools_documentation()` to refresh best practices and available tools
-2. Think deeply about the user's request and the logic needed to fulfill it
-3. **Ask clarifying questions** if anything is unclear (triggers, data format, integrations)
-4. Only then proceed with the workflow building process
+1. Call `mcp_n8n_health_check()` to get the user's n8n version and store it for reference 
+2. Call `tools_documentation()` to refresh best practices and available tools
+3. Think deeply about the user's request and the logic needed to fulfill it
+4. **Ask clarifying questions** if anything is unclear (triggers, data format, integrations)
+5. Only then proceed with the workflow building process
 
 ---
 
@@ -59,7 +60,7 @@ The n8n MCP server may know about newer node versions than the user's n8n instan
 ```
 n8n_health_check({mode: "diagnostic"})
 ```
-Look for `apiConfiguration.status.version` in the response (e.g., "1.122.4").
+Look for `apiConfiguration.versionInfo` in the response (e.g., "2.29.5").
 
 ### Fixing "?" Icons on Existing Workflows
 If user reports nodes showing "?":
@@ -279,6 +280,16 @@ n8n_update_partial_workflow({
 - HTTP API (28%) → Add error handling branch
 - Scheduled Tasks → Use proper cron syntax
 
+### AI Agent Workflow
+- Always set up AI tool nodes with correct prompt structure
+- Always prefer to use the `@n8n/n8n-nodes-langchain.agent` for AI agent workflows
+- **Discovery Process**: `search_nodes` does NOT show version. You MUST call `get_node` to see the `versionNotice`.
+- **Version Trust Policy**: NEVER trust the `versionNotice` or `typeVersion` suggested by MCP tools for AI nodes. They often suggest versions (like 3.1) that are too new for most instances.
+- **Safe Versioning**: ALWAYS default to using `typeVersion` **3.0** for AI Agent and related nodes to ensure compatibility.
+- ALWAYS include a warning about `typeVersion` compatibility when creating AI Agent nodes:
+ > "⚠️ **Version Note**: If the AI Agent node shows a question mark (?) icon, it means the version is too new for your n8n instance. Use `n8n_update_partial_workflow` to downgrade the `typeVersion` to 1.0 or 1.1."
+- Always check the nodes connections for every AI tool node using `validate_workflow_connections` to ensure proper setup, also when using tools, verify their connections to AI Agent nodes.
+
 ### Node Configuration  
 - Progressive discovery: `get_node_essentials` → `get_property_dependencies` → `get_node_info`
 - Fields appear/disappear based on `displayOptions` - respect operation context
@@ -309,6 +320,10 @@ n8n_update_partial_workflow({
 - Data access: `_input.all()`, `_input.first()`, `_input.item`
 - Webhook: `_json["body"]["field"]`
 
+
+### Data Table Node
+- Use for database-like operations within n8n
+- Always use a `typeVersion` 0.1 lower than the latest available to ensure compatibility
 ---
 
 ## 🔍 CONTEXT-BASED SKILL COMPOSITION
